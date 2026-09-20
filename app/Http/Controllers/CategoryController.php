@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class CategoryController extends Controller
 {
     public function index()
     {
-        return view ('categories.index');
+        $categories = [
+            'Pemrograman Web',
+            'Jaringan Komputer',
+            'Business Intelligence',
+            'Data Science',
+            'Analisis Sistem'
+        ];
+        return view('categories.index', compact('categories'));
     }
 }
