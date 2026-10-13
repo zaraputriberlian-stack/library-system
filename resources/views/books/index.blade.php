@@ -12,6 +12,7 @@
                 <th>Penulis</th>
                 <th>Tahun Terbit</th>
                 <th>Stok</th>
+                <th>Aksi</th> <!-- Kolom Baru -->
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,14 @@
                     <td>{{ $book->penulis }}</td>
                     <td>{{ $book->tahun_terbit }}</td>
                     <td>{{ $book->stok }}</td>
+                    <td>
+                        <a href="{{ route('books.edit', $book) }}">Edit</a>
+                        <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

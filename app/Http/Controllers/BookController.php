@@ -41,4 +41,26 @@ class BookController extends Controller
 
         return redirect('/books')->with('success', 'Data buku berhasil ditambahkan!');
     }
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        $book->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'tahun_terbit' => $request->tahun_terbit,
+            'stok' => $request->stok,
+        ]);
+        return redirect('/books')->with('success', 'Buku berhasil diupdate!');
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect('/books')->with('success', 'Buku berhasil dihapus!');
+    }
 }
