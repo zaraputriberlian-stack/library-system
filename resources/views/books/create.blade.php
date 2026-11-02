@@ -8,6 +8,21 @@
     <form action="/books" method="POST">
         @csrf
         <div style="margin-bottom: 15px;">
+            <label for="category_id">Kategori</label><br>
+            <select name="category_id" id="category_id" required>
+            <option value="">Pilih kategori</option>
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                {{ $category->name }}
+            </option>
+            @endforeach
+                </select>
+            @error('category_id')
+                <div style="color: red; font-size: 13px;">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div style="margin-bottom: 15px;">
             <label>Judul Buku</label><br>
             <input type="text" name="judul" value="{{ old('judul') }}">
             @error('judul')

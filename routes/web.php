@@ -5,7 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('books.index');
 });
 
 Route::middleware('guest')->group(function () {
