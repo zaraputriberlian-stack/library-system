@@ -3,6 +3,11 @@
 @section('title', 'Daftar Buku')
 
 @section('content')
+    <form action="{{ route('logout') }}" method="POST" style="margin-bottom: 20px;">
+    @csrf
+    <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Logout</button>
+    </form>
+    
     <h2>Daftar Buku</h2>
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
