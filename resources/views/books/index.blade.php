@@ -7,6 +7,11 @@
     @csrf
     <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Logout</button>
     </form>
+    @can('manage-users')
+    <a href="{{ route('users.index') }}" style="display: inline-block; margin-bottom: 15px; padding: 6px 12px; background-color: #4F53EA; color: white; text-decoration: none; border-radius: 4px;">
+        Kelola Pengguna
+    </a>
+    @endcan
 
     <h2>Daftar Buku</h2>
     <table border="1" cellpadding="8" cellspacing="0">

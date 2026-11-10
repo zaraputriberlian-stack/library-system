@@ -2,19 +2,41 @@
 
 namespace Database\Seeders;
 
-use App\Models\Book;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Book;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        Book::insert([
-            ['judul' => 'Pemrograman Web Framework', 'penulis' => 'Budi S.', 'tahun_terbit' => 2023, 'stok' => 15],
-            ['judul' => 'Belajar Database MySQL', 'penulis' => 'Andi M.', 'tahun_terbit' => 2022, 'stok' => 10],
-            ['judul' => 'Dasar-dasar Python', 'penulis' => 'Siti A.', 'tahun_terbit' => 2024, 'stok' => 5],
-            ['judul' => 'Sistem Informasi Manajemen', 'penulis' => 'Rina W.', 'tahun_terbit' => 2021, 'stok' => 20],
-            ['judul' => 'Algoritma dan Struktur Data', 'penulis' => 'Eko P.', 'tahun_terbit' => 2023, 'stok' => 8]
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin Perpustakaan',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'petugas@example.com'],
+            [
+                'name' => 'Petugas Perpustakaan',
+                'password' => Hash::make('password123'),
+                'role' => 'petugas',
+            ]
+        );
+
+        $cat1 = Category::updateOrCreate(['name' => 'Pemrograman']);
+        $cat2 = Category::updateOrCreate(['name' => 'Manajemen']);
+        $cat3 = Category::updateOrCreate(['name' => 'Fiksi']);
+
+        Book::updateOrCreate(
+            ['judul' => 'Pemrograman Web Framework'],
+            ['penulis' => 'Azzahra', 'tahun_terbit' => 2023, 'stok' => 15, 'category_id' => $cat1->id]
+        );
     }
 }
